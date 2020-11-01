@@ -1,36 +1,68 @@
 import React, {useState} from 'react';
+import Counter from './components/Counter';
 import './App.css';
-import Display from './Display';
-import Button from './Button';
+import Settings from './components/Settings';
 
 function App() {
-    let [value, setValue] = useState<number>(0)
-    let minValue = 0;
-    let maxValue = 5;
+  let [counterValue, setCounterValue] = useState<number | string>(0)
 
-    const changeValue = () => {
-        if (value < maxValue) {
-            setValue(value + 1)
-        }
+  let [maxInputValue, setMaxInputValue] = useState<number>(0)
+  let [startInputValue, setStartInputValue] = useState<number>(0)
+
+  const disabledSetButton = maxInputValue < 0 || startInputValue < 0
+    || maxInputValue <= startInputValue || counterValue === startInputValue;
+  const disabledCounterButton = typeof counterValue === "string";
+
+
+  const changeMaxInputValue = (value: number) => {
+    setMaxInputValue(value);
+    if (value < 0 || value <= startInputValue) {
+      setCounterValue(`Incorrect value!`)
+    } else if (value > 0 && startInputValue >= 0) {
+      setCounterValue(`Enter values and press "set"`)
     }
-    const resetValue = () => {
-        setValue(0)
+  }
+
+  const changeMinInputValue = (value: number) => {
+    setStartInputValue(value);
+    if (value < 0 || value >= maxInputValue) {
+      setCounterValue(`Incorrect value!`)
+    } else if (value > 0 && maxInputValue >= 0) {
+      setCounterValue(`Enter values and press "set"`)
     }
-    return (
-        <div className="content">
-            <div className="container">
-                <Display value={value} maxValue={maxValue}/>
-                <div className="buttons">
-                    <Button buttonName='inc'
-                            callback={changeValue}
-                            disabled={value === maxValue}/>
-                    <Button buttonName='reset'
-                            callback={resetValue}
-                            disabled={value === minValue}/>
-                </div>
-            </div>
-        </div>
-    );
+  }
+
+  const setValue = () => {
+    setCounterValue(startInputValue);
+
+  }
+
+  const changeValue = () => {
+    if (typeof counterValue === 'number') {
+      setCounterValue(counterValue + 1)
+    }
+  }
+  const resetValue = () => {
+    setCounterValue(startInputValue)
+  }
+  return (
+    <div className="content">
+      <Settings maxInputValue={maxInputValue}
+                startInputValue={startInputValue}
+                changeMaxInputValue={changeMaxInputValue}
+                changeMinInputValue={changeMinInputValue}
+                setValue={setValue}
+                counterValue={counterValue}
+                disabled={disabledSetButton}/>
+
+      <Counter counterValue={counterValue}
+               changeValue={changeValue}
+               resetValue={resetValue}
+               maxInputValue={maxInputValue}
+               startInputValue={startInputValue}
+               disabled={disabledCounterButton}/>
+    </div>
+  );
 }
 
 export default App;

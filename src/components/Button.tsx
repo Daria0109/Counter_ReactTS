@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
+import '../App.css';
 
 export type ButtonPropsType = {
     buttonName: string
-    callback: () => void
+    callback?: () => void
     disabled: boolean
 }
 function Button (props: ButtonPropsType) {
