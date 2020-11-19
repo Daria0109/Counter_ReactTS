@@ -1,11 +1,11 @@
 import React, {ChangeEvent} from 'react';
 import Button from './Button';
 import '../App.css';
+import {InputValueType} from '../App';
 
 type SettingsPropsType = {
   maxInputValue: number
   startInputValue: number
-  counterValue: number | string
   changeMaxInputValue: (value: number) => void
   changeMinInputValue: (value: number) => void
   setValue: () => void
@@ -19,15 +19,10 @@ function Settings(props: SettingsPropsType) {
   const changeMinInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     props.changeMinInputValue(e.currentTarget.valueAsNumber)
   }
-
   let errorStyleForMaxValue = props.maxInputValue < 0
   || props.maxInputValue <= props.startInputValue ? 'error-input' : '';
   let errorStyleForMinValue = props.startInputValue < 0
   || props.maxInputValue <= props.startInputValue ? 'error-input' : '';
-  // let disabledButton = props.maxInputValue < 0
-  //   || props.startInputValue < 0
-  //   || props.maxInputValue <= props.startInputValue
-  //   || props.counterValue === props.startInputValue;
 
   return (
     <div className="settings container">
@@ -50,7 +45,9 @@ function Settings(props: SettingsPropsType) {
         </div>
       </div>
       <div className="buttons">
-        <Button buttonName="set" callback={props.setValue} disabled={props.disabled}/>
+        <Button buttonName="set"
+                callback={props.setValue}
+                disabled={props.disabled}/>
       </div>
     </div>
   )

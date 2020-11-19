@@ -2,40 +2,57 @@ import React, {useState} from 'react';
 import Counter from './components/Counter';
 import './App.css';
 import Settings from './components/Settings';
+import {restoreState, saveState} from './localStorage/localStorage';
+
+export type InputValueType = {
+  maxValue: number
+  startValue: number
+}
 
 function App() {
-  let [counterValue, setCounterValue] = useState<number | string>(0)
+    let [inputValue, setInputValue] = useState<InputValueType>(() => {
+    const initialState: InputValueType = restoreState<InputValueType>('inputValue', {
+      maxValue: 0,
+      startValue: 0
+    })
+    return initialState;
+  })
+  let [counterValue, setCounterValue] = useState<number | string>(inputValue.startValue)
+  let [buttonDisabled, setButtonDisabled] = useState<boolean>(true)
 
-  let [maxInputValue, setMaxInputValue] = useState<number>(0)
-  let [startInputValue, setStartInputValue] = useState<number>(0)
+  const disabledCounterButton = typeof counterValue === 'string';
 
-  const disabledSetButton = maxInputValue < 0 || startInputValue < 0
-    || maxInputValue <= startInputValue || counterValue === startInputValue;
-  const disabledCounterButton = typeof counterValue === "string";
-
+  const save = () => {
+   saveState<InputValueType>('inputValue', inputValue);
+  };
+  const counterErrorText = `Incorrect value!`;
+  const counterActionText = `Enter values and press "set"`;
 
   const changeMaxInputValue = (value: number) => {
-    setMaxInputValue(value);
-    if (value < 0 || value <= startInputValue) {
-      setCounterValue(`Incorrect value!`)
-    } else if (value > 0 && startInputValue >= 0) {
-      setCounterValue(`Enter values and press "set"`)
+    setInputValue({...inputValue, maxValue: value});
+    if (value < 0 || value <= inputValue.startValue) {
+      setCounterValue(counterErrorText);
+      setButtonDisabled(true)
+    } else if (value > 0 && inputValue.startValue >= 0) {
+      setCounterValue(counterActionText);
+      setButtonDisabled(false)
     }
   }
-
   const changeMinInputValue = (value: number) => {
-    setStartInputValue(value);
-    if (value < 0 || value >= maxInputValue) {
-      setCounterValue(`Incorrect value!`)
-    } else if (value > 0 && maxInputValue >= 0) {
-      setCounterValue(`Enter values and press "set"`)
+    setInputValue({...inputValue, startValue: value});
+    if (value < 0 || value >= inputValue.maxValue) {
+      setCounterValue(counterErrorText);
+      setButtonDisabled(true)
+    } else if (value >= 0 && inputValue.maxValue >= 0) {
+      setCounterValue(counterActionText);
+      setButtonDisabled(false)
     }
   }
 
   const setValue = () => {
-    setCounterValue(startInputValue);
-
-  }
+    setCounterValue(inputValue.startValue);
+    setButtonDisabled(true);
+    save();}
 
   const changeValue = () => {
     if (typeof counterValue === 'number') {
@@ -43,23 +60,22 @@ function App() {
     }
   }
   const resetValue = () => {
-    setCounterValue(startInputValue)
+    setCounterValue(inputValue.startValue)
   }
   return (
     <div className="content">
-      <Settings maxInputValue={maxInputValue}
-                startInputValue={startInputValue}
+      <Settings maxInputValue={inputValue.maxValue}
+                startInputValue={inputValue.startValue}
                 changeMaxInputValue={changeMaxInputValue}
                 changeMinInputValue={changeMinInputValue}
                 setValue={setValue}
-                counterValue={counterValue}
-                disabled={disabledSetButton}/>
+                disabled={buttonDisabled}/>
 
       <Counter counterValue={counterValue}
                changeValue={changeValue}
                resetValue={resetValue}
-               maxInputValue={maxInputValue}
-               startInputValue={startInputValue}
+               maxInputValue={inputValue.maxValue}
+               startInputValue={inputValue.startValue}
                disabled={disabledCounterButton}/>
     </div>
   );
