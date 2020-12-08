@@ -4,7 +4,8 @@ export enum ACTIONS_TYPE {
   SET_COUNTER_VALUE = 'Counter/SET_COUNTER_VALUE',
   SET_IS_ERROR = 'Counter/SET_IS_ERROR',
   SET_COUNTER_ACTION = 'Counter/SET_COUNTER_ACTION',
-  DISABLE_SET_BUTTON = 'Counter/DISABLE_SET_BUTTON'
+  DISABLE_SET_BUTTON = 'Counter/DISABLE_SET_BUTTON',
+  SET_SETTINGS_VISIBLE = 'Counter/SET_SETTINGS_VISIBLE'
 }
 export const changeMaxValueAC = (value: number) => ({
   type: ACTIONS_TYPE.CHANGE_MAX_VALUE, value
@@ -24,6 +25,9 @@ export const setIsCounterActionAC = (isCounterAction: boolean) => ({
 export const disableSetButtonAC = (isSetButtonDisabled: boolean) => ({
   type: ACTIONS_TYPE.DISABLE_SET_BUTTON, isSetButtonDisabled
 } as const)
+export const setSettingsVisible = (isSettingsVisible: boolean) => ({
+  type: ACTIONS_TYPE.SET_SETTINGS_VISIBLE, isSettingsVisible
+} as const)
 
 export type ActionsType = ReturnType<typeof changeMaxValueAC>
   | ReturnType<typeof changeStartValueAC>
@@ -31,6 +35,7 @@ export type ActionsType = ReturnType<typeof changeMaxValueAC>
   | ReturnType<typeof setIsErrorAC>
   | ReturnType<typeof disableSetButtonAC>
   | ReturnType<typeof setIsCounterActionAC>
+  | ReturnType<typeof setSettingsVisible>
 
 export type InputStateType = {
   max: number
@@ -41,6 +46,7 @@ export type CounterStateType = InputStateType & {
   isError: boolean
   isCounterAction: boolean
   isSetButtonDisabled: boolean
+  isSettingsVisible: boolean
 }
 const initialState: CounterStateType = {
   max: 0,
@@ -48,7 +54,8 @@ const initialState: CounterStateType = {
   counter: 0,
   isError: false,
   isCounterAction: false,
-  isSetButtonDisabled: true
+  isSetButtonDisabled: true,
+  isSettingsVisible: false
 }
 
 
@@ -83,6 +90,11 @@ export const counterReducer = (state: CounterStateType = initialState, action: A
       return {
         ...state,
         isSetButtonDisabled: action.isSetButtonDisabled
+      }
+    case ACTIONS_TYPE.SET_SETTINGS_VISIBLE:
+      return {
+        ...state,
+        isSettingsVisible: action.isSettingsVisible
       }
     default:
       return state

@@ -7,7 +7,7 @@ import {
   changeMaxValueAC, changeStartValueAC,
   disableSetButtonAC,
   setCounterValueAC, setIsCounterActionAC,
-  setIsErrorAC
+  setIsErrorAC, setSettingsVisible
 } from '../../redux/counter-reducer';
 import {saveState} from '../../localStorage/localStorage';
 import Input from '../Input/Input';
@@ -53,6 +53,7 @@ function Settings() {
     dispatch(setIsErrorAC(false));
     dispatch(setIsCounterActionAC(false));
     dispatch(disableSetButtonAC(true));
+    dispatch(setSettingsVisible(false))
     saveState('inputValues', {max: max, start: start});
   }
 
