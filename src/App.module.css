@@ -1,0 +1,16 @@
+body {
+  background-color: #23243e;
+  padding: 180px 100px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+
+
+
+
