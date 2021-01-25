@@ -9,15 +9,18 @@ type InputPropsType = {
   datatype: string
 }
 
-function Input(props: InputPropsType) {
+const Input: React.FC<InputPropsType> = ({
+                                           className, value, step,
+                                           changeValue, datatype
+                                         }) => {
   return <>
-      <input className={props.className}
-             type="number"
-             value={props.value}
-             step={props.step}
-             onChange={(e) => props.changeValue(e, props.datatype)}
-             datatype={props.datatype}/>
-    </>
+    <input className={className}
+           type="number"
+           value={value}
+           step={step}
+           onChange={(e) => changeValue(e, datatype)}
+           datatype={datatype}/>
+  </>
 }
 
 export default Input;

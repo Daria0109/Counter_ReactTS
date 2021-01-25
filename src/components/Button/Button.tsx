@@ -2,17 +2,15 @@ import React from 'react';
 import s from './Button.module.css';
 
 export type ButtonPropsType = {
-    buttonName: string
-    callback: () => void
-    disabled?: boolean
+  buttonName: string
+  callback: () => void
+  disabled?: boolean
 }
-function Button (props: ButtonPropsType) {
-        return (
-        <div>
-            <button className={s.btn} onClick={props.callback} disabled={props.disabled}>
-                {props.buttonName}
-            </button>
-        </div>
-    )
-}
+const Button: React.FC<ButtonPropsType> = React.memo(({buttonName, callback, disabled}) => {
+  return <div>
+    <button className={s.btn} onClick={callback} disabled={disabled}>
+      {buttonName}
+    </button>
+  </div>
+})
 export default Button;

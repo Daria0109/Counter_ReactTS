@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useCallback} from 'react';
 import Button from '../Button/Button';
 import s from './Settings.module.css'
 import {useDispatch, useSelector} from 'react-redux';
@@ -8,38 +8,36 @@ import {saveState} from '../../localStorage/localStorage';
 import Input from '../Input/Input';
 
 
-function Settings() {
+const Settings: React.FC = React.memo(() => {
   const dispatch = useDispatch();
   const max = useSelector(selectMax);
   const start = useSelector(selectStart);
   const isSetButtonDisabled = useSelector(selectIsSetButtonDisabled);
 
 
-  const changeValue = (e: ChangeEvent<HTMLInputElement>, data: string) => {
-    const value = e.currentTarget.valueAsNumber;
+  const changeInputValue = useCallback((e: ChangeEvent<HTMLInputElement>, data: string) => {
+    const value = +e.currentTarget.value;
     data === 'max'
       ? dispatch(changeMaxValueAC(value))
       : dispatch(changeStartValueAC(value))
-  }
+  }, [dispatch])
 
-
-  const setValue = () => {
+  const setValue = useCallback(() => {
     dispatch(setCounterValueAC(start));
     saveState('inputValues', {max: max, start: start});
-  }
+  }, [max, start, dispatch])
 
   let errorStyleMax = max < 0 || max <= start ? `${s.error_input}` : '';
   let errorStyleStart = start < 0 || max <= start ? `${s.error_input}` : '';
 
-  return (
-    <div className={s.container}>
+  return <div className={s.container}>
       <div className={s.input_block}>
         <div>
           <span className={s.input_title}>max value:</span>
           <Input className={`${s.input_item} ${errorStyleMax}`}
                  value={max}
                  step={1}
-                 changeValue={changeValue}
+                 changeValue={changeInputValue}
                  datatype={'max'}/>
         </div>
         <div>
@@ -47,7 +45,7 @@ function Settings() {
           <Input className={`${s.input_item} ${errorStyleStart}`}
                  value={start}
                  step={1}
-                 changeValue={changeValue}
+                 changeValue={changeInputValue}
                  datatype={'start'}/>
         </div>
       </div>
@@ -57,8 +55,7 @@ function Settings() {
                 disabled={isSetButtonDisabled}/>
       </div>
     </div>
-  )
-}
+})
 
 export default Settings;
 

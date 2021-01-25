@@ -3,16 +3,11 @@ import Counter from './components/Counter/Counter';
 import s from './App.module.css';
 import Settings from './components/Settings/Settings';
 import {useDispatch} from 'react-redux';
-import {
-  changeMaxValueAC,
-  changeStartValueAC,
-  InputStateType,
-  setCounterValueAC
-} from './redux/counter-reducer';
+import {changeMaxValueAC, changeStartValueAC, InputStateType, setCounterValueAC} from './redux/counter-reducer';
 import {getState} from './localStorage/localStorage';
 
 
-function App() {
+const App:React.FC = () => {
   const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +17,7 @@ function App() {
       dispatch(changeStartValueAC(state.start));
       dispatch(setCounterValueAC(state.start))
     }
-  }, [])
+  }, [dispatch])
 
   return <div className={s.content}>
     <Settings/>

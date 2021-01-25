@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import {selectCounter, selectIsCounterAction, selectIsError, selectMax} from '../../redux/selector';
 
 
-function Display() {
+const Display:React.FC = React.memo(() => {
   const max = useSelector(selectMax);
   const counter = useSelector(selectCounter);
   const isError = useSelector(selectIsError);
@@ -23,6 +23,6 @@ function Display() {
       {(isError && counterErrorText) || (isCounterAction && counterActionText) || counter}
     </div>
   )
-}
+})
 
 export default Display;
