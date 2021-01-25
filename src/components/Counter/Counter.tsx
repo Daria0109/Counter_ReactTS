@@ -4,7 +4,7 @@ import Button from '../Button/Button';
 import s from './Counter.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {selectCounter, selectIsCounterAction, selectIsError, selectMax, selectStart} from '../../redux/selector';
-import {setCounterValueAC, setSettingsVisible} from '../../redux/counter-reducer';
+import {setCounterValueAC} from '../../redux/counter-reducer';
 
 function Counter() {
   const dispatch = useDispatch();
@@ -23,9 +23,7 @@ function Counter() {
     dispatch(setCounterValueAC(start));
   }
 
-  const toggleSettings = () => {
-  dispatch(setSettingsVisible(true))
-  }
+
   return <div className={s.container}>
     <Display />
     <div className={s.buttons}>
@@ -35,8 +33,7 @@ function Counter() {
       <Button buttonName='reset'
               callback={resetValue}
               disabled={isError || isCounterAction}/>
-      <Button buttonName="set"
-              callback={toggleSettings}/>
+
     </div>
   </div>
 }

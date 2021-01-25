@@ -3,12 +3,7 @@ import Button from '../Button/Button';
 import s from './Settings.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {selectIsSetButtonDisabled, selectMax, selectStart} from '../../redux/selector';
-import {
-  changeMaxValueAC, changeStartValueAC,
-  disableSetButtonAC,
-  setCounterValueAC, setIsCounterActionAC,
-  setIsErrorAC, setSettingsVisible
-} from '../../redux/counter-reducer';
+import {changeMaxValueAC, changeStartValueAC, setCounterValueAC} from '../../redux/counter-reducer';
 import {saveState} from '../../localStorage/localStorage';
 import Input from '../Input/Input';
 
@@ -20,40 +15,16 @@ function Settings() {
   const isSetButtonDisabled = useSelector(selectIsSetButtonDisabled);
 
 
-  const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
+  const changeValue = (e: ChangeEvent<HTMLInputElement>, data: string) => {
     const value = e.currentTarget.valueAsNumber;
-    dispatch(changeMaxValueAC(value));
-    if (value < 0 || value <= start || start < 0) {
-      dispatch(setIsErrorAC(true));
-      dispatch(setIsCounterActionAC(false));
-      dispatch(disableSetButtonAC(true))
-    } else {
-      dispatch(setIsCounterActionAC(true));
-      dispatch(setIsErrorAC(false));
-      dispatch(disableSetButtonAC(false))
-    }
+    data === 'max'
+      ? dispatch(changeMaxValueAC(value))
+      : dispatch(changeStartValueAC(value))
   }
 
-  const changeStartValue = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.valueAsNumber;
-    dispatch(changeStartValueAC(value));
-    if (value < 0 || value >= max || max < 0) {
-      dispatch(setIsErrorAC(true));
-      dispatch(setIsCounterActionAC(false));
-      dispatch(disableSetButtonAC(true))
-    } else {
-      dispatch(setIsCounterActionAC(true));
-      dispatch(setIsErrorAC(false));
-      dispatch(disableSetButtonAC(false))
-    }
-  }
 
   const setValue = () => {
     dispatch(setCounterValueAC(start));
-    dispatch(setIsErrorAC(false));
-    dispatch(setIsCounterActionAC(false));
-    dispatch(disableSetButtonAC(true));
-    dispatch(setSettingsVisible(false))
     saveState('inputValues', {max: max, start: start});
   }
 
@@ -68,14 +39,16 @@ function Settings() {
           <Input className={`${s.input_item} ${errorStyleMax}`}
                  value={max}
                  step={1}
-                 changeValue={changeMaxValue}/>
+                 changeValue={changeValue}
+                 datatype={'max'}/>
         </div>
         <div>
           <span className={s.input_title}>start value:</span>
           <Input className={`${s.input_item} ${errorStyleStart}`}
                  value={start}
                  step={1}
-                 changeValue={changeStartValue}/>
+                 changeValue={changeValue}
+                 datatype={'start'}/>
         </div>
       </div>
       <div className={s.buttons}>

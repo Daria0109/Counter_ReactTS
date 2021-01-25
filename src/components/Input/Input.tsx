@@ -5,8 +5,8 @@ type InputPropsType = {
   className: string
   value: number
   step: number
-  changeValue: (e: ChangeEvent<HTMLInputElement>) => void
-
+  changeValue: (e: ChangeEvent<HTMLInputElement>, data: string) => void
+  datatype: string
 }
 
 function Input(props: InputPropsType) {
@@ -15,7 +15,8 @@ function Input(props: InputPropsType) {
              type="number"
              value={props.value}
              step={props.step}
-             onChange={props.changeValue}/>
+             onChange={(e) => props.changeValue(e, props.datatype)}
+             datatype={props.datatype}/>
     </>
 }
 
