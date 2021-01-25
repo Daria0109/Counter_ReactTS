@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Button.module.css';
+import s from './Button.module.scss';
 
 export type ButtonPropsType = {
   buttonName: string
@@ -7,10 +7,10 @@ export type ButtonPropsType = {
   disabled?: boolean
 }
 const Button: React.FC<ButtonPropsType> = React.memo(({buttonName, callback, disabled}) => {
-  return <div>
+  return <>
     <button className={s.btn} onClick={callback} disabled={disabled}>
       {buttonName}
     </button>
-  </div>
+  </>
 })
 export default Button;

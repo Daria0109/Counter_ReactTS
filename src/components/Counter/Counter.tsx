@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import Display from '../Display/Display';
 import Button from '../Button/Button';
-import s from './Counter.module.css'
+import s from './Counter.module.scss'
 import {useDispatch, useSelector} from 'react-redux';
 import {selectCounter, selectIsCounterAction, selectIsError, selectMax, selectStart} from '../../redux/selector';
 import {setCounterValueAC} from '../../redux/counter-reducer';

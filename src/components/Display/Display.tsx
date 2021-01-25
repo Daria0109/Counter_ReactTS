@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './../Counter/Counter.module.css';
+import s from './Display.module.scss';
 import {useSelector} from 'react-redux';
 import {selectCounter, selectIsCounterAction, selectIsError, selectMax} from '../../redux/selector';
 

@@ -1,46 +1,18 @@
 .container {
-  border: 3px solid #08e3f6;
-  border-radius: 10px;
   width: 400px;
   height: auto;
   padding: 20px;
-}
-.display {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #08e3f6;
-  padding: 18px;
-  text-align: center;
-  vertical-align: center;
-  font-size: 78px;
-  margin: 0 auto;
-  max-width: 350px;
-  height: 150px;
-  margin-bottom: 10px;
+  border: 3px solid #08e3f6;
   border-radius: 10px;
 }
-.number {
-  font-size: 78px;
-}
-.maximum {
-  color: red;
-  font-size: 86px;
-}
-.text {
-  font-size: 24px;
-}
-.error_text {
-  font-size: 24px;
-  color: red;
-  font-weight: bold;
-}
-.buttons {
-  border-radius: 10px;
-  margin: 0 auto;
+.container .buttons {
+  width: 100%;
   border: 2px solid #08e3f6;
-  max-width: 350px;
+  border-radius: 10px;
   padding: 20px;
   display: flex;
+  align-items: center;
   justify-content: space-around;
 }
+
+/*# sourceMappingURL=Counter.module.css.map */

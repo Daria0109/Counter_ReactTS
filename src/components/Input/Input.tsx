@@ -1,4 +1,5 @@
 import React, {ChangeEvent} from 'react';
+import s from './Input.module.scss'
 
 
 type InputPropsType = {
@@ -14,7 +15,7 @@ const Input: React.FC<InputPropsType> = ({
                                            changeValue, datatype
                                          }) => {
   return <>
-    <input className={className}
+    <input className={`${s.inputItem} ${className}`}
            type="number"
            value={value}
            step={step}
