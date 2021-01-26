@@ -5,6 +5,12 @@
   border: 3px solid #08e3f6;
   border-radius: 10px;
 }
+@media (max-width: 470px) {
+  .container {
+    width: 300px;
+    padding: 10px;
+  }
+}
 .container .buttons {
   width: 100%;
   border: 2px solid #08e3f6;

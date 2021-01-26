@@ -29,7 +29,8 @@ const Settings: React.FC = React.memo(() => {
   let errorStyleMax = max < 0 || max <= start ? `${s.inputError}` : '';
   let errorStyleStart = start < 0 || max <= start ? `${s.inputError}` : '';
 
-  return <div className={s.container}>
+  return <div className={s.wrapperContainer}>
+    <div className={s.container}>
       <div className={s.inputsBlock}>
         <div className={s.inputRow}>
           <span className={s.title}>Max:</span>
@@ -54,6 +55,7 @@ const Settings: React.FC = React.memo(() => {
                 disabled={isSetButtonDisabled}/>
       </div>
     </div>
+  </div>
 })
 
 export default Settings;

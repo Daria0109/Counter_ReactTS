@@ -12,6 +12,12 @@
   text-align: center;
   flex-direction: row;
 }
+@media (max-width: 470px) {
+  .display {
+    padding: 10px 30px;
+    height: 150px;
+  }
+}
 
 .display.number {
   font-size: 78px;

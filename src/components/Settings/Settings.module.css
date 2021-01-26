@@ -1,11 +1,17 @@
-.container {
+.wrapperContainer .container {
   width: 400px;
   height: auto;
   padding: 20px;
   border: 3px solid #08e3f6;
   border-radius: 10px;
 }
-.container .inputsBlock {
+@media (max-width: 470px) {
+  .wrapperContainer .container {
+    width: 300px;
+    padding: 10px;
+  }
+}
+.wrapperContainer .container .inputsBlock {
   padding: 20px 60px;
   background-color: #08e3f6;
   width: 100%;
@@ -17,23 +23,29 @@
   align-items: center;
   justify-content: space-around;
 }
-.container .inputsBlock .inputRow {
+@media (max-width: 470px) {
+  .wrapperContainer .container .inputsBlock {
+    padding: 10px 30px;
+    height: 150px;
+  }
+}
+.wrapperContainer .container .inputsBlock .inputRow {
   width: 100%;
   color: #23243e;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.container .inputsBlock .inputRow .title {
+.wrapperContainer .container .inputsBlock .inputRow .title {
   font-size: 20px;
 }
-.container .inputsBlock .inputRow .inputError {
+.wrapperContainer .container .inputsBlock .inputRow .inputError {
   border: 2px solid #921515;
   background-color: #f5d9dd;
   color: #23243e;
   outline: none;
 }
-.container .buttons {
+.wrapperContainer .container .buttons {
   width: 100%;
   border: 2px solid #08e3f6;
   border-radius: 10px;
@@ -41,6 +53,11 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+@media (max-width: 910px) {
+  .wrapperContainer {
+    margin-bottom: 20px;
+  }
 }
 
 /*# sourceMappingURL=Settings.module.css.map */
