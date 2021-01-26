@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import Display from '../Display/Display';
 import Button from '../Button/Button';
 import s from './Counter.module.scss'
@@ -7,6 +7,7 @@ import {selectCounter, selectIsCounterAction, selectIsError, selectMax, selectSt
 import {setCounterValueAC} from '../../redux/counter-reducer';
 
 const Counter:React.FC = React.memo(() => {
+  const[maxCount, setMaxCount] = useState(false);
   const dispatch = useDispatch();
   const max = useSelector(selectMax);
   const start = useSelector(selectStart);
@@ -16,12 +17,17 @@ const Counter:React.FC = React.memo(() => {
 
   const increaseValue = useCallback(() => {
       dispatch(setCounterValueAC(counter + 1));
+      if (counter + 1 === max) {
+        setMaxCount(true)
+      }
   }, [counter, dispatch])
   const resetValue = useCallback(() => {
     dispatch(setCounterValueAC(start));
+    setMaxCount(false)
   }, [start, dispatch])
+  const containerMaxStyle = maxCount ? s.max : ''
 
-  return <div className={s.container}>
+  return <div className={`${s.container} ${containerMaxStyle}`}>
     <Display />
     <div className={s.buttons}>
       <Button buttonName='inc'

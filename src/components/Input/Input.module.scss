@@ -1,4 +1,9 @@
+@import './../../scss/variables';
+
 .inputItem {
+  background-color: $backgroundColor;
+  color: $accentColor;
+  border: 2px solid $accentColor;
   padding: 4px 8px;
   font-size: 22px;
   width: 100px;

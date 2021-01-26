@@ -1,4 +1,7 @@
 .inputItem {
+  background-color: #23243e;
+  color: #08e3f6;
+  border: 2px solid #08e3f6;
   padding: 4px 8px;
   font-size: 22px;
   width: 100px;

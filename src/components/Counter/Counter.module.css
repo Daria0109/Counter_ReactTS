@@ -15,4 +15,10 @@
   justify-content: space-around;
 }
 
+.container.max {
+  border-width: 3px;
+  border-color: #921515;
+  box-shadow: 0 0 30px #921515;
+}
+
 /*# sourceMappingURL=Counter.module.css.map */

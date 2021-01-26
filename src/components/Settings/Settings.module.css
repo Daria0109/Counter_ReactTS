@@ -19,6 +19,7 @@
 }
 .container .inputsBlock .inputRow {
   width: 100%;
+  color: #23243e;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,8 +28,9 @@
   font-size: 20px;
 }
 .container .inputsBlock .inputRow .inputError {
-  border: 2px solid red;
+  border: 2px solid #921515;
   background-color: #f5d9dd;
+  color: #23243e;
   outline: none;
 }
 .container .buttons {

@@ -1,12 +1,14 @@
+@import './../../scss/variables';
+
 .btn {
   border: none;
   border-radius: 8px;
   padding: 15px 30px;
   font-size: 24px;
-  background-color: #08e3f6;
+  background-color: $accentColor;
   cursor: pointer;
-  .btn:focus {
-    outline: none;
+  &:focus {
+    outline: #000000;
   }
 }
 

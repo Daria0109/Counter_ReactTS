@@ -1,22 +1,14 @@
+@import "./../../scss/mixins";
+@import "./../../scss/variables";
+
+
 .container {
-  width: 400px;
-  height: auto;
-  padding: 20px;
-  border: 3px solid #08e3f6;
-  border-radius: 10px;
+  @include container();
   .inputsBlock {
-    padding: 20px 60px;
-    background-color: #08e3f6;
-    width: 100%;
-    height: 200px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+    @include containerContent();
     .inputRow {
       width: 100%;
+      color: $backgroundColor;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -24,20 +16,15 @@
         font-size: 20px;
       }
       .inputError {
-        border: 2px solid red;
+        border: 2px solid $attentionColor;
         background-color: #f5d9dd;
+        color: $backgroundColor;
         outline: none;
       }
     }
   }
   .buttons {
-    width: 100%;
-    border: 2px solid #08e3f6;
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    @include buttonsBlock();
   }
 }
 
