@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Counter_ReactTS/static/css/main.e8e65227.chunk.css",
+    "main.js": "/Counter_ReactTS/static/js/main.04b2d714.chunk.js",
+    "main.js.map": "/Counter_ReactTS/static/js/main.04b2d714.chunk.js.map",
+    "runtime-main.js": "/Counter_ReactTS/static/js/runtime-main.b5e92be6.js",
+    "runtime-main.js.map": "/Counter_ReactTS/static/js/runtime-main.b5e92be6.js.map",
+    "static/js/2.ad3f36fa.chunk.js": "/Counter_ReactTS/static/js/2.ad3f36fa.chunk.js",
+    "static/js/2.ad3f36fa.chunk.js.map": "/Counter_ReactTS/static/js/2.ad3f36fa.chunk.js.map",
+    "index.html": "/Counter_ReactTS/index.html",
+    "precache-manifest.37de90ff34765959f4e4a49211922694.js": "/Counter_ReactTS/precache-manifest.37de90ff34765959f4e4a49211922694.js",
+    "service-worker.js": "/Counter_ReactTS/service-worker.js",
+    "static/css/main.e8e65227.chunk.css.map": "/Counter_ReactTS/static/css/main.e8e65227.chunk.css.map",
+    "static/js/2.ad3f36fa.chunk.js.LICENSE.txt": "/Counter_ReactTS/static/js/2.ad3f36fa.chunk.js.LICENSE.txt",
+    "static/media/Orbitron-Regular.ttf": "/Counter_ReactTS/static/media/Orbitron-Regular.add0c424.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b5e92be6.js",
+    "static/js/2.ad3f36fa.chunk.js",
+    "static/css/main.e8e65227.chunk.css",
+    "static/js/main.04b2d714.chunk.js"
+  ]
+}
