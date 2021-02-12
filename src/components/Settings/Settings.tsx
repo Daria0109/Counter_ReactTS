@@ -4,7 +4,6 @@ import s from './Settings.module.scss'
 import {useDispatch, useSelector} from 'react-redux';
 import {selectIsSetButtonDisabled, selectMax, selectStart} from '../../redux/selector';
 import {changeMaxValueAC, changeStartValueAC, setCounterValueAC} from '../../redux/counter-reducer';
-import {saveState} from '../../localStorage/localStorage';
 import Input from '../Input/Input';
 
 
@@ -23,7 +22,6 @@ const Settings: React.FC = React.memo(() => {
 
   const setValue = useCallback(() => {
     dispatch(setCounterValueAC(start));
-    saveState('inputValues', {max: max, start: start});
   }, [max, start, dispatch])
 
   let errorStyleMax = max < 0 || max <= start ? `${s.inputError}` : '';

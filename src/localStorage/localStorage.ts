@@ -1,14 +1,20 @@
-// L O C A L    S T O R A G E
-import {InputStateType} from '../redux/counter-reducer';
+import {AppStateType} from '../redux/store';
 
-export function saveState(key: string, state: InputStateType) {
-  const stateAsString = JSON.stringify(state);
-  localStorage.setItem(key, stateAsString)
+export const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem('state')
+    if (serializedState === null) {
+      return undefined
+    }
+    return JSON.parse(serializedState)
+  } catch (error) {
+    return undefined
+  }
 }
 
-export function getState (key: string) {
-  const stateAsString = localStorage.getItem(key);
-  if (stateAsString) {
-    return JSON.parse(stateAsString);
-  }
+export const saveState = (state: AppStateType) => {
+  try {
+    const serializedState = JSON.stringify(state)
+    localStorage.setItem('state', serializedState)
+  } catch (error) {}
 }

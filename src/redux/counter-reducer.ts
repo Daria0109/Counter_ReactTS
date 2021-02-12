@@ -1,9 +1,9 @@
+// A c t i o n s
 export enum ACTIONS_TYPE {
   CHANGE_MAX_VALUE = 'Counter/CHANGE_MAX_INPUT',
   CHANGE_START_VALUE = 'Counter/CHANGE_START_INPUT',
   SET_COUNTER_VALUE = 'Counter/SET_COUNTER_VALUE',
 }
-
 export const changeMaxValueAC = (value: number) => ({
   type: ACTIONS_TYPE.CHANGE_MAX_VALUE, value
 } as const);
@@ -13,23 +13,13 @@ export const changeStartValueAC = (value: number) => ({
 export const setCounterValueAC = (value: number) => ({
   type: ACTIONS_TYPE.SET_COUNTER_VALUE, value
 } as const);
-
-
 export type ActionsType = ReturnType<typeof changeMaxValueAC>
   | ReturnType<typeof changeStartValueAC>
   | ReturnType<typeof setCounterValueAC>
 
-export type InputStateType = {
-  max: number
-  start: number
-}
-export type CounterStateType = InputStateType & {
-  counter: number
-  isError: boolean
-  isCounterAction: boolean
-  isSetButtonDisabled: boolean
-}
-const initialState: CounterStateType = {
+
+// S t a t e
+const initialState = {
   max: 0,
   start: 0,
   counter: 0,
@@ -37,8 +27,10 @@ const initialState: CounterStateType = {
   isCounterAction: false,
   isSetButtonDisabled: true,
 }
+export type CounterStateType = typeof initialState
 
 
+// R e d u c e r
 export const counterReducer = (state: CounterStateType = initialState, action: ActionsType): CounterStateType => {
   switch (action.type) {
     case ACTIONS_TYPE.CHANGE_MAX_VALUE:
